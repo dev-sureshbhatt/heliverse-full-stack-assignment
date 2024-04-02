@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Pagination from "../components/Pagination";
 import { useEffect } from "react";
 import ProfileCard from "../components/ProfileCard";
+import { useDispatch } from "react-redux";
 
 function Home() {
+  const dispatch = useDispatch()
   const [page, setPage] = useState(2);
   const [limit, setLimit] = useState(20);
   const [userProfiles, setUserProfiles] = useState([]);
@@ -35,17 +37,34 @@ function Home() {
     )
   }
 
-  
+
+
+
 
   return (
-    <div>
-    <div className="flex flex-wrap">
-      {userProfiles.map((value, index) => {
-        return <ProfileCard key={value.id} user={value} />;
-      })}
+    <div className=" flex flex-col">
       
-    </div>
+      <div className="flex flex-wrap gap-10 items-center justify-center">
+      {
+        userProfiles.map((_value, index)=>{
+
+          return (
+          
+          <div className="text-center">
+          <ProfileCard variant={"addToTeam"} key={_value.id} user={_value} />
+          </div>
+          
+      
+          )
+        })
+      }
+    
+    
+      </div>
+    
+    <div>
     <Pagination prevPage={prevPage} page={page} nextPage={nextPage} onPageChange={handlePageChange}/>
+    </div>
     </div>
   );
 }

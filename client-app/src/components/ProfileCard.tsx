@@ -1,30 +1,26 @@
-import React from 'react'
-import {add} from '../store/teamSlice'
-import {useDispatch} from 'react-redux'
+import React from "react";
+import { add } from "../store/teamSlice";
+import { useDispatch } from "react-redux";
 
-export default function ProfileCard({ user }){
-  const dispatch = useDispatch()
+export default function ProfileCard({ user, variant }) {
+  console.log(variant)
+  const dispatch = useDispatch();
 
-  function handleAdd(){
-    dispatch(add(user))
-    console.log(user.first_name)
+  function handleAdd() {
+    dispatch(add(user));
+    console.log(user.first_name);
   }
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-1/5">
-      <img
-        className="border-2 border-black w-16 h-16 rounded-full mx-auto"
-        src={user.avatar}
-        alt={`${user.first_name} ${user.last_name}`}
-      />
-      <div className="text-center mt-4">
-        <h3 className="text-lg font-semibold">{`${user.first_name} ${user.last_name}`}</h3>
-        <p className="text-gray-600">{user.email}</p>
-        <p className="text-gray-600">{user.gender}</p>
-        <p className="text-gray-600">{user.domain}</p>
-        <p className="text-gray-600">{user.availability}</p>
+    <div className="bg-white flex shadow-md flex-col gap-3 items-center justify-center text-center w-[200px] h-[200px]">
+      <img height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
+      <div>
+        <h3>{`${user.first_name} ${user.last_name}`}</h3>
+        <p>{user.email}</p>
+        <p>{user.gender}</p>
+        <p>{user.domain}</p>
+        <p>{user.availability}</p>
       </div>
       <button onClick={handleAdd}>Add to team</button>
     </div>
   );
-};
-
+}
