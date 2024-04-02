@@ -11,7 +11,7 @@ export default function ProfileCard({ user, variant }) {
     console.log(user.first_name)
   }
 
-  function handleRemove(user){
+  function handleRemove(){
     dispatch(remove(user.id))
     console.log("firstname is", user.first_name)
 
