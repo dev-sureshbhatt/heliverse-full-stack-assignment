@@ -1,10 +1,12 @@
 import express from 'express'
 import dummyData from '../heliverse_mock_data.json' assert {type: 'json'}  
-
+import cors from 'cors'
 
 
 const PORT = process.env.PORT | 4000
 const app = express()
+
+app.use(cors())
 
 app.listen(PORT, ()=>{
     console.log("App listening at PORT: ", PORT)
@@ -16,7 +18,7 @@ app.get('/api/users', (req,res)=>{
     //extracting info from URL query string
     const page = parseInt(req.query.page)
     const limit = parseInt(req.query.limit)
-    
+
     
     //slicing results that needs to be send back to the client based on query string values
     const startIndex = (page -1) * limit
