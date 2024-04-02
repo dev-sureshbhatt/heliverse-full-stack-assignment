@@ -43,7 +43,7 @@ function Home() {
       })}
       
     </div>
-    <Pagination prevPage={prevPage} currentPage={page} nextPage={nextPage} onPageChange={handlePageChange}/>
+    <Pagination prevPage={prevPage} page={page} nextPage={nextPage} onPageChange={handlePageChange}/>
     </div>
   );
 }
