@@ -17,17 +17,33 @@ function Home() {
           setUserProfiles(data.result)
           setNextPage(data.next?.page)
           setPrevPage(data.prev?.page)
-        });
+        })
       }
-    );
+    )
   }, []);
+
+
+  function handlePageChange(paginationPageNumber){
+    fetch(`http://localhost:4000/api/users?page=${paginationPageNumber}&limit=${limit}`).then(
+      (res) => {
+        res.json().then((data) => {
+          setUserProfiles(data.result)
+          setNextPage(data.next?.page)
+          setPrevPage(data.prev?.page)
+        })
+      }
+    )
+  }
 
   return (
     <div>
+    <div className="flex flex-wrap">
       {userProfiles.map((value, index) => {
         return <ProfileCard key={index} user={value} />;
       })}
-      <Pagination prevPage={prevPage} nextPage={nextPage}/>
+      
+    </div>
+    <Pagination prevPage={prevPage} currentPage={page} nextPage={nextPage} onPageChange={handlePageChange}/>
     </div>
   );
 }

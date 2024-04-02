@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ProfileCard({ user }){
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 m-4 max-w-xs">
+    <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-1/5">
       <img
         className="border-2 border-black w-16 h-16 rounded-full mx-auto"
         src={user.avatar}
