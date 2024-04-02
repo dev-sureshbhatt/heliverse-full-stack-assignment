@@ -50,8 +50,8 @@ function Home() {
 
           return (
           
-          <div className="text-center">
-          <ProfileCard variant={"addToTeam"} key={_value.id} user={_value} />
+          <div key={`div${_value.id}`} className="text-center">
+          <ProfileCard variant={"addToTeam"} key={`ProfileCard${_value.id}`} user={_value} />
           </div>
           
       
