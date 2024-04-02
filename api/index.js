@@ -13,9 +13,38 @@ app.listen(PORT, ()=>{
 
 //GET all users with pagination support
 app.get('/api/users', (req,res)=>{
-    const {page, limit} = req.query
+    //extracting info from URL query string
+    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit)
+    
+    
+    //slicing results that needs to be send back to the client based on query string values
     const startIndex = (page -1) * limit
     const endIndex = page * limit
     const result = dummyData.slice(startIndex, endIndex)
-    res.json(result)
+    
+    
+    // logic to send extra information of next and prev page 
+    const results = {}
+    
+
+    if (endIndex < dummyData.length){
+    results.next = {
+        page: page + 1,
+        limit: limit
+    }
+}
+
+    if (startIndex > 0){
+        results.prev = {
+            page: page - 1,
+            limit: limit
+        }
+    }
+    
+
+    results.result = result
+    
+    
+    res.json(results)
 })
