@@ -1,17 +1,19 @@
 import React from "react";
-import { add } from "../store/teamSlice";
+import { add, remove } from "../store/teamSlice";
 import { useDispatch } from "react-redux";
 
 export default function ProfileCard({ user, variant }) {
-  console.log(variant)
+  
   const dispatch = useDispatch();
 
   function handleAdd() {
-    dispatch(add(user));
-    console.log(user.first_name);
+    dispatch(add(user))
+    console.log(user.first_name)
   }
 
-  function handleRemove(){
+  function handleRemove(user){
+    dispatch(remove(user.id))
+    console.log("firstname is", user.first_name)
 
   }
   

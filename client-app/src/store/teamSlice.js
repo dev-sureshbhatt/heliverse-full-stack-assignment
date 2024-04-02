@@ -5,11 +5,13 @@ const teamSlice = createSlice({
     initialState: [],
     reducers: {
         add(state, action){
+            console.log("payload is",action.payload)
             state.push(action.payload)
 
         },
         remove(state, action){
-            state = state.filter(item => item.id !== action.payload)
+            console.log("payload is",action.payload)
+            return state.filter(item => item.id !== action.payload)
         }
     }
 })
