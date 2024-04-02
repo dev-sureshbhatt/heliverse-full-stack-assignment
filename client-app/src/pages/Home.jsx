@@ -35,11 +35,13 @@ function Home() {
     )
   }
 
+  
+
   return (
     <div>
     <div className="flex flex-wrap">
       {userProfiles.map((value, index) => {
-        return <ProfileCard key={index} user={value} />;
+        return <ProfileCard key={value.id} user={value} />;
       })}
       
     </div>
