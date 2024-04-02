@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function Pagination() {
+function handleNext(){
+    console.log("next")
+}
+
+function handlePrev(){
+    console.log("prev")
+}
+
+function Pagination({nextPage, prevPage}) {
+
+
   return (
     <div>
-        <button>Prev</button>
-        <button>Next</button>
+        <button disabled={!prevPage} onClick={handlePrev}>{`Prev Page: ${prevPage}`}</button>
+ v      <button disabled={!nextPage} onClick={handleNext}>{`Next Page: ${nextPage}`}</button>
     </div>
   )
 }
