@@ -8,7 +8,8 @@ function Navbar() {
     <div>
         <span>Heliverse Technologies</span>
         <div>
-            <Link to={'/'}>Home</Link>
+          {/* using a tag below to refresh the page - so that the page fetches all results again irrespective of the filter */}
+            <a href={'/'}>Home</a> 
             <Link to={'/team'}>My team</Link>
             <span>{`My Team Members: ${teamMembers}`}</span>
         </div>
