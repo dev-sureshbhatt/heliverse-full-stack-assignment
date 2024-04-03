@@ -114,7 +114,7 @@ app.get('/api/users/:id', async (req,res)=>{
 })
 
 
-//endpoint to delete
+//endpoint to delete a user
 app.delete('/api/users/:id', async (req,res)=>{
   try {
     const id = req.params.id
@@ -129,6 +129,36 @@ app.delete('/api/users/:id', async (req,res)=>{
     res.status(500).json({msg:"something went wrong"})
   }
   
+})
+
+
+//endpoint to update a user
+
+app.put('/api/users/:id', async (req,res)=>{
+  
+  try {
+  const id = req.params.id
+  const {first_name, last_name, email, gender, avatar, domain, available} = req.body
+  
+  const fieldsToUpdate = {}
+  if (first_name) fieldsToUpdate.first_name = first_name
+  if (last_name) fieldsToUpdate.last_name = last_name
+  if (email) fieldsToUpdate.email = email
+  if (gender) fieldsToUpdate.gender = gender
+  if (avatar) fieldsToUpdate.avatar = avatar
+  if (domain) fieldsToUpdate.domain = domain
+  if (available !== undefined) fieldsToUpdate.available = available //!== because it is a boolean value
+
+  const updatedUser = await USER.findOneAndUpdate({id}, fieldsToUpdate, {new: true})
+  
+  if (!updatedUser) {
+res.status(404).json({success: false, msg: "N user found"})
+  } else res.status(200).json({success: true, msg: "User updated successfully", updatedUser: updatedUser })
+
+  } catch (error) {
+    res.status(500).json({success: false, msg:"something went wrong"})
+  }
+
 })
 
 
