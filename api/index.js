@@ -81,12 +81,12 @@ app.post('/api/users', async (req,res)=>{
     const createdUser = await USER.create({
       first_name, last_name, email, gender, avatar, domain, available, id
     })
-    res.status(201).json({"Created User":createdUser, "msg": "success"})
+    res.status(201).json({"Created User":createdUser, "success": "true"})
   
     
   } catch (error) {
     console.log(error)
-    res.status(500).json({msg: "something went wrong"})
+    res.status(500).json({msg: "something went wrong", success: false})
   }
   
 })
@@ -100,6 +100,9 @@ app.get('/api/users/:id', async (req,res)=>{
     const id = req.params.id
     const fetchUser = await USER.findOne({id})
     // console.log(fetchUser)
+    if (!fetchUser) {
+      res.status(404).json({"success":false, msg:"no user found"})
+    } else 
     res.status(200).json({"success":"true", "userProfile":fetchUser})
       
   } catch (error) {
