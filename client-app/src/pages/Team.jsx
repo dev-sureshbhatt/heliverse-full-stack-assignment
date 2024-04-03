@@ -8,7 +8,19 @@ function Team() {
   function handleCreateTeam(){
     console.log(teamMembersState)
     const teamMembersId = teamMembersState.map(value => value._id)
-    console.log(teamMembersId)
+    
+    const dataToSend = {}
+    const teamName = "team creation testing"
+    dataToSend.teamName = teamName 
+    dataToSend.user = teamMembersId
+
+    console.log("sending request")
+
+    fetch("http://localhost:4000/api/team", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({dataToSend})
+    })
 
     
   }

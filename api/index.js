@@ -169,6 +169,15 @@ res.status(404).json({success: false, msg: "N user found"})
 })
 
 
+//endpoint to create a new Team
+app.post('/api/team', (req,res)=>{
+  console.log("Inside post route")
+  console.log(req.body)
+})
+
+
+
+
 
 // endpoint to get team details
 
@@ -185,6 +194,8 @@ app.get('/api/team/:id', async (req,res)=>{
 
 
 })
+
+
 
 
 // const teamData = {
