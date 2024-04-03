@@ -170,13 +170,19 @@ res.status(404).json({success: false, msg: "N user found"})
 
 
 
-// endpoint to create a new team from the selected members
+// endpoint to get team details
 
 app.get('/api/team/:id', async (req,res)=>{
-  const {id} = req.params
-  console.log(id) 
-  const fethcedTeam = await TEAM.findById(id).populate('user')
-  console.log(fethcedTeam)
+  try {
+    const {id} = req.params
+    // console.log(id) 
+    const fethcedTeam = await TEAM.findById(id).populate('user')
+    // console.log(fethcedTeam)
+    res.json(fethcedTeam)    
+  } catch (error) {
+    res.status(500).json({success: false, msg: "something went wrong"})
+  }
+
 
 })
 
