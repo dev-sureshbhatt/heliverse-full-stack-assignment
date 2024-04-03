@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 function Home() {
   const dispatch = useDispatch()
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
   const [userProfiles, setUserProfiles] = useState([]);
   const [nextPage, setNextPage] = useState()
@@ -59,7 +59,7 @@ function handleSearch(ev){
     domain: domainFilter
   })
 
-  fetch(`http://localhost:4000/api/usersTest?${queryParams}`).then(
+  fetch(`http://localhost:4000/api/users?${queryParams}`).then(
       (res) => {
         res.json().then((data) => {
           setUserProfiles(data.result)

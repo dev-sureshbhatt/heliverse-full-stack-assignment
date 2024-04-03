@@ -27,9 +27,13 @@ mongoose
 
 
 
-app.get("/api/usersTest", async (req,res)=>{
-  const {page, limit, first_name, gender, available, domain} = req.query
-  console.log(page, limit, first_name, gender, available, domain)
+
+//GET all users with pagination support
+app.get("/api/users", async (req, res) => {
+  //extracting info from URL query string
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
+  const {first_name, gender, available, domain } = req.query
   const filters = {}
 
   if (first_name) filters.first_name = new RegExp(first_name, "i");
@@ -37,47 +41,29 @@ app.get("/api/usersTest", async (req,res)=>{
   if (gender) filters.gender = new RegExp (`^${gender}$`, "i")
   if (available) filters.available = available
 
-  console.log(filters)
+
   const totalFilteredUser = await USER.countDocuments(filters)
-  const fetchedUser = await USER.find(filters)
-  console.log("total documents are", totalFilteredUser )
-  console.log("fetched user is",fetchedUser)
-
-})
-
-//GET all users with pagination support
-app.get("/api/users", async (req, res) => {
-  //extracting info from URL query string
-  const page = parseInt(req.query.page);
-  const limit = parseInt(req.query.limit);
-  const {name, gender, available, domain } = req.query
-  const filter = {}
-
-
+  console.log(totalFilteredUser)
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
-
-  const totalUsers = await USER.countDocuments();
-  console.log(totalUsers);
-
+  
   const results = {};
   
-
   if (startIndex > 0) {
     results.prev = {
       page: page - 1,
       limit: limit,
     };
   }
-  if (endIndex < totalUsers) {
+  if (endIndex < totalFilteredUser) {
     results.next = {
       page: page + 1,
       limit: limit,
     };
   }
 
-  const fetchUsers = await USER.find().skip(startIndex).limit(limit);
-        results.result = fetchUsers;
+  const fetchUsers = await USER.find(filters).skip(startIndex).limit(limit);
+  results.result = fetchUsers;
 
         res.json(results);
 });
