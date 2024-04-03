@@ -78,6 +78,7 @@ app.post('/api/users', async (req,res)=>{
     const {first_name, last_name, email, gender, avatar, domain, available} = req.body
     const totalDocuments = await USER.countDocuments()
     const id = totalDocuments + 1
+
     const createdUser = await USER.create({
       first_name, last_name, email, gender, avatar, domain, available, id
     })
@@ -110,6 +111,24 @@ app.get('/api/users/:id', async (req,res)=>{
     res.status(500).json({"success":"false"})
   }
 
+})
+
+
+//endpoint to delete
+app.delete('/api/users/:id', async (req,res)=>{
+  try {
+    const id = req.params.id
+    const deleteStatus = await USER.deleteOne({id})
+    // console.log(deleteStatus)
+    if (deleteStatus.deletedCount > 0) {
+      res.status(200).json({"success": true, msg:"User has been deleted"})
+    } else if (deleteStatus.deletedCount == 0)
+    {res.status(404).json({"success": false, msg:"no resource to delete"})}
+
+  } catch (error) {
+    res.status(500).json({msg:"something went wrong"})
+  }
+  
 })
 
 
