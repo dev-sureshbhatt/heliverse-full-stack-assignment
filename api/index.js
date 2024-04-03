@@ -1,16 +1,33 @@
 import express from 'express'
 import dummyData from '../heliverse_mock_data.json' assert {type: 'json'}  
+import mongoose from 'mongoose'
 import cors from 'cors'
+import dotenv from 'dotenv'
+dotenv.config()
+
+
+
 
 
 const PORT = process.env.PORT | 4000
 const app = express()
 
+
+
 app.use(cors())
+
 
 app.listen(PORT, ()=>{
     console.log("App listening at PORT: ", PORT)
 })
+
+//Mongoose Connection
+
+
+mongoose.connect(process.env.MONGO).then(()=>{console.log("mongoose connected")}).catch((err)=>{console.log(err, "something went wrong connecting MONGOOSE")})
+
+
+
 
 
 //GET all users with pagination support
