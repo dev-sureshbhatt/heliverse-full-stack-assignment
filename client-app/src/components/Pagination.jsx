@@ -23,7 +23,7 @@ function Pagination({nextPage, prevPage, page, onPageChange}) {
 
 
   return (
-    <div>
+    <div className='flex gap-6 justify-center'>
         <button disabled={!prevPage} onClick={handlePrev} >{`Prev`}</button>
         <button disabled={!nextPage} onClick={handleNext}>{`Next`}</button>
     </div>

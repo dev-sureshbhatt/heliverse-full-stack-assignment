@@ -134,7 +134,7 @@ function handleSearch(ev){
     
       </div>
     
-    <div>
+    <div className="mt-10 mb-10">
     <Pagination prevPage={prevPage} page={page} nextPage={nextPage} onPageChange={handlePageChange}/>
     </div>
     </div>
