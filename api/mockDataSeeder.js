@@ -2,9 +2,11 @@
 import mongoose from "mongoose";
 import { USER } from "./models/userProfile.model.js";
 import dummyData from '../heliverse_mock_data.json' assert {type: 'json'}
+import dotenv from 'dotenv'
+dotenv.config()
 
 
-mongoose.connect('mongodb+srv://devsureshbhatt:xZ3hp3Eat4o1kLC9@dobby-db.cf1rjey.mongodb.net/heliverse?retryWrites=true&w=majority').then(() => {
+mongoose.connect(process.env.MONGO).then(() => {
     console.log('mongoose connected');
      seedData();// Call the function to seed the data after successful connection
   }).catch((err) => {
