@@ -6,8 +6,12 @@ const teamSlice = createSlice({
     name: 'team',
     initialState: [],
     reducers: {
+
         add(state, action){
-            state.push(action.payload)
+            const existingUser = state.find(user => user.id === action.payload.id)
+            const existingDomain = state.find(user => user.domain === action.payload.domain)
+            if (!existingUser && !existingDomain)
+            {state.push(action.payload)}
 
         },
         remove(state, action){
