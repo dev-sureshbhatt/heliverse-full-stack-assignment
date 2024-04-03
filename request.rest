@@ -1,2 +1,3 @@
 GET http://localhost:4000/api/users?page=4&limit=20
 ###
+POST http://localhost:4000/api/users?page=4&limit=20

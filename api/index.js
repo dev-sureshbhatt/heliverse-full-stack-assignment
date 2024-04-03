@@ -9,6 +9,7 @@ const PORT = process.env.PORT | 4000;
 const app = express();
 
 app.use(cors());
+app.use(express.json())
 
 app.listen(PORT, () => {
   console.log("App listening at PORT: ", PORT);
@@ -28,7 +29,7 @@ mongoose
 
 
 
-//GET all users with pagination support
+//GET all users with pagination support along with filter functionality
 app.get("/api/users", async (req, res) => {
   //extracting info from URL query string
   const page = parseInt(req.query.page);
@@ -70,7 +71,25 @@ app.get("/api/users", async (req, res) => {
 
 
 
+//endpoint to create a new user
 
+app.post('/api/users', async (req,res)=>{
+  try {
+    const {first_name, last_name, email, gender, avatar, domain, available} = req.body
+    const totalDocuments = await USER.countDocuments()
+    const id = totalDocuments + 1
+    const createdUser = await USER.create({
+      first_name, last_name, email, gender, avatar, domain, available, id
+    })
+    res.status(201).json({"Created User":createdUser, "msg": "success"})
+  
+    
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({msg: "something went wrong"})
+  }
+  
+})
 
 
 
