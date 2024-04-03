@@ -1,16 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import ProfileCard from "../components/ProfileCard";
 
 function Team() {
+
+  const [teamName, setTeamName] = useState("")
   const teamMembersState = useSelector((state) => state.team);
 
-  function handleCreateTeam(){
-    console.log(teamMembersState)
+  function handleCreateTeam(ev){
+    ev.preventDefault()
+    
+    //to fetch array of only IDS so that we can save it to the DB and reference to respective user profiles
     const teamMembersId = teamMembersState.map(value => value._id)
-    const teamName = "team creation testing"
-
-    console.log("sending request")
 
     fetch("http://localhost:4000/api/team", {
       method: 'POST',
@@ -40,7 +42,10 @@ function Team() {
           );
         })}
       </div>
-      <button onClick={handleCreateTeam}>Create Team</button>
+      <form onSubmit={handleCreateTeam}>
+      <input type="text" placeholder="Hello" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} />
+      <button>Create Team</button>
+      </form>
     </div>
   );
 }

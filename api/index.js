@@ -62,14 +62,15 @@ app.get("/api/users", async (req, res) => {
     results.next = {
       page: page + 1,
       limit: limit,
-    }
+    }}
+  
     const fetchUsers = await USER.find(filters).skip(startIndex).limit(limit);
   results.result = fetchUsers;
 
         res.status(200).json(results);
   }
 
-  } catch (error) {
+  catch (error) {
    console.log(error)
    res.status(500).json({success: false, msg: "something went wrong"}) 
   }
