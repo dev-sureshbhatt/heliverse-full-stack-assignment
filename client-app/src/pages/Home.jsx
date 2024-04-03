@@ -11,6 +11,10 @@ function Home() {
   const [userProfiles, setUserProfiles] = useState([]);
   const [nextPage, setNextPage] = useState()
   const [prevPage, setPrevPage] = useState()
+  const [searchQuery, setSearchQuery] = useState("")
+const [domainFilter, setDomainFilter] = useState("")
+const [genderFilter, setGenderFilter] = useState("")
+const [availabilityFilter, setAvailabilityFilter] = useState("")
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/users?page=${page}&limit=${limit}`).then(
@@ -40,17 +44,33 @@ function Home() {
 
 
 /// for filters
-const [searchQuery, setSearchQuery] = useState("")
-const [domainFilter, setDomainFilter] = useState("")
-const [genderFilter, setGenderFilter] = useState("")
-const [availabilityFilter, setAvailabilityFilter] = useState("")
+
 
 
 
 function handleSearch(ev){
-
   ev.preventDefault()
-  console.log(searchQuery, genderFilter, domainFilter, availabilityFilter)
+  const queryParams = new URLSearchParams({
+    page: page,
+    limit: limit,
+    first_name: searchQuery,
+    gender: genderFilter,
+    available: availabilityFilter,
+    domain: domainFilter
+  })
+
+  fetch(`http://localhost:4000/api/usersTest?${queryParams}`).then(
+      (res) => {
+        res.json().then((data) => {
+          setUserProfiles(data.result)
+          setNextPage(data.next?.page)
+          setPrevPage(data.prev?.page)
+        })
+      }
+    )
+  
+
+
 }
 
 
@@ -65,12 +85,13 @@ function handleSearch(ev){
     <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search By Name" value={searchQuery} onChange={(ev) => setSearchQuery(ev.target.value)} />
         <select value={genderFilter} onChange={(ev) => setGenderFilter(ev.target.value)}>
-            <option>Select Gender</option>
+            <option value={null}>Select Gender</option>
+            <option value="Polygender">Polygender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
         <select value={domainFilter} onChange={(ev) => setDomainFilter(ev.target.value)}>
-            <option value="">Select Domain</option>
+            <option value={null}>Select Domain</option>
             <option value="IT">IT</option>
             <option value="Marketing">Marketing</option>
             <option value="Sales">Sales</option>
