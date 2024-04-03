@@ -43,7 +43,7 @@ function Team() {
         })}
       </div>
       <form onSubmit={handleCreateTeam}>
-      <input type="text" placeholder="Hello" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} />
+      <input type="text" placeholder="Enter Team Name" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} />
       <button>Create Team</button>
       </form>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { add, remove } from "../store/teamSlice";
 import { useDispatch, useSelector } from "react-redux";
+import '../App.css'
 
 export default function ProfileCard({ user, variant }) {
 
@@ -41,11 +42,11 @@ export default function ProfileCard({ user, variant }) {
 
 
 
-        <div className="bg-white flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[300px]">
-          <img height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
-          <div>
-            <h3>{`${user.first_name} ${user.last_name}`}</h3>
-            <p>{user.email}</p>
+        <div className="bg-[#3B3E47] flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[300px]">
+          <img className="border-[#738FFF] border-2 rounded-full" height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
+          <div className="text-center mt-1">
+            <h3 className="text-lg font-semibold">{`${user.first_name} ${user.last_name}`}</h3>
+            <p className="mt-4">{user.email}</p>
             <p>{user.gender}</p>
             <p>{user.domain}</p>
           </div>
@@ -55,14 +56,11 @@ export default function ProfileCard({ user, variant }) {
       )
     case "removeFromTeam": 
     return (
-
-
-
-      <div className="bg-white flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[300px]">
-        <img height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
-        <div>
-          <h3>{`${user.first_name} ${user.last_name}`}</h3>
-          <p>{user.email}</p>
+            <div className="bg-[#3B3E47] flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[300px]">
+        <img className="border-[#738FFF] border-2 rounded-full" height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
+        <div className="text-center mt-1">
+          <h3 className="text-lg font-semibold">{`${user.first_name} ${user.last_name}`}</h3>
+          <p className="mt-4">{user.email}</p>
           <p>{user.gender}</p>
           <p>{user.domain}</p>
           <p>{user.availability}</p>
