@@ -93,4 +93,22 @@ app.post('/api/users', async (req,res)=>{
 
 
 
+//endpoint to retrieve a specific user by id
+
+app.get('/api/users/:id', async (req,res)=>{
+  try {
+    const id = req.params.id
+    const fetchUser = await USER.findOne({id})
+    // console.log(fetchUser)
+    res.status(200).json({"success":"true", "userProfile":fetchUser})
+      
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({"success":"false"})
+  }
+
+})
+
+
+
 
