@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 import { USER } from "./models/userProfile.model.js";
+import { TEAM } from "./models/team.model.js";
 
 const PORT = process.env.PORT | 4000;
 const app = express();
@@ -174,6 +175,16 @@ res.status(404).json({success: false, msg: "N user found"})
 // app.post('/api/team', (req,res)=>{
 
 // })
+
+
+const teamData = {
+  user: ['660cc4779ad2b3384633ff7f', '660cc4779ad2b3384633ff83'],
+  teamName: 'Team 1'
+};
+
+const newTeam = new TEAM(teamData);
+console.log("saving team")
+await newTeam.save();
 
 
 

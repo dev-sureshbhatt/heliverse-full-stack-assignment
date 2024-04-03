@@ -1,10 +1,14 @@
 import mongoose, { Mongoose } from "mongoose";
 
 const teamSchema = new mongoose.Schema({
-    user: {
+    teamName: {
+        type: String,
+        required: true
+    },
+    user: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserProfiles'
-    }
+    }]
 })
 
 

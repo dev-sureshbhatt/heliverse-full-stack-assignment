@@ -3,10 +3,14 @@ import { useSelector } from "react-redux";
 import ProfileCard from "../components/ProfileCard";
 
 function Team() {
-  const teamMembers = useSelector((state) => state.team);
+  const teamMembersState = useSelector((state) => state.team);
 
   function handleCreateTeam(){
-    console.log(teamMembers)
+    console.log(teamMembersState)
+    const teamMembersId = teamMembersState.map(value => value._id)
+    console.log(teamMembersId)
+
+    
   }
   
 
@@ -18,7 +22,7 @@ function Team() {
       <h3>My Team Members</h3>
 
       <div>
-        {teamMembers.map((_value, index) => {
+        {teamMembersState.map((_value, index) => {
           return (
             <ProfileCard
               variant={"removeFromTeam"}
