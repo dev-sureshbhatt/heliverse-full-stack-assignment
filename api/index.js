@@ -207,6 +207,18 @@ app.get('/api/team/:id', async (req,res)=>{
 
 })
 
+//endpoint to fetch all teams
+
+app.get('/api/team', async (req,res)=>{
+  try {
+    const fetchAllTeam = await TEAM.find().populate('user')
+    
+    res.status(200).json(fetchAllTeam)  
+  } catch (error) {
+    
+  }
+  
+})
 
 
 

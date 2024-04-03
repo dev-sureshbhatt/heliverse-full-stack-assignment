@@ -6,6 +6,7 @@ import Team from './pages/Team'
 import Navbar from './components/Navbar'
 import { Provider } from 'react-redux'
 import store from './store/store'
+import ViewTeams from './pages/ViewTeams'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Routes>
       <Route index element={<Home />} />
       <Route path='/create-team' element={<Team />} />
+      <Route path='/view-teams' element={<ViewTeams />} />
     </Routes>
     </BrowserRouter>
     </Provider>
