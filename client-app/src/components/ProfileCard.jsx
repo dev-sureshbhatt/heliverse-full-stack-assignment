@@ -41,7 +41,7 @@ export default function ProfileCard({ user, variant }) {
 
 
 
-        <div className="bg-white flex shadow-md flex-col gap-3 items-center justify-center text-center w-[200px] h-[200px]">
+        <div className="bg-white flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[300px]">
           <img height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
           <div>
             <h3>{`${user.first_name} ${user.last_name}`}</h3>
@@ -58,7 +58,7 @@ export default function ProfileCard({ user, variant }) {
 
 
 
-      <div className="bg-white flex shadow-md flex-col gap-3 items-center justify-center text-center w-[200px] h-[200px]">
+      <div className="bg-white flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[300px]">
         <img height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
         <div>
           <h3>{`${user.first_name} ${user.last_name}`}</h3>

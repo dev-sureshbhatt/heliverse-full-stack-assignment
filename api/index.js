@@ -30,7 +30,7 @@ mongoose
 //GET all users with pagination support
 app.get("/api/users", async (req, res) => {
   //extracting info from URL query string
-    const page = parseInt(req.query.page);
+  const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
 
   const startIndex = (page - 1) * limit;
