@@ -6,16 +6,24 @@ export default function ProfileCard({ user, variant }) {
 
 
   const [buttonLabel, setButtonLabel] = useState(user.available ? "Add to Team" : "Not Available")
+  const [errorMessage, setErrorMessage] = useState("")
   
   const dispatch = useDispatch();
   const teamState = useSelector((state) => state.team) 
   
 
   function handleAdd() {
+
     
-    if (user.available){
+    const existingDomain = teamState.find(_user => _user.domain === user.domain)
+    
+    
+    
+    if (user.available && !existingDomain){
       dispatch(add(user))
       setButtonLabel("Added")
+    } else if (existingDomain) {
+      setErrorMessage("User with similar domain is already added to the team")
     }
     
     
@@ -41,6 +49,7 @@ export default function ProfileCard({ user, variant }) {
             <p>{user.gender}</p>
             <p>{user.domain}</p>
           </div>
+          {errorMessage && <p className="text-red-500 text-xs">{errorMessage}</p>}
           <button disabled={!user.available} onClick={handleAdd}>{buttonLabel}</button>
         </div>
       )
