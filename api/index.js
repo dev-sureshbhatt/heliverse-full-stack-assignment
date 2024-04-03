@@ -33,8 +33,8 @@ app.get("/api/usersTest", async (req,res)=>{
   const filters = {}
 
   if (first_name) filters.first_name = new RegExp(first_name, "i");
-  if (domain) filters.domain = new RegExp(domain, "i")
-  if (gender) filters.gender = new RegExp (gender, "i")
+  if (domain) filters.domain = new RegExp(`^${domain}$`, "i")
+  if (gender) filters.gender = new RegExp (`^${gender}$`, "i")
   if (available) filters.available = available
 
   console.log(filters)
