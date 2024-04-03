@@ -407,3 +407,23 @@ Retrieve the details of a specific team by id
     "__v": 0
 }
 ```
+
+
+## Frontend Components
+
+### ProfileCard Component
+
+**Features**
+- Reusable card component for displaying user profiles with different variants.
+- Variants include adding users to the team and removing them.
+
+**Usage**
+- The ProfileCard component is a reusable component that displays user profiles with different variants based on the use case
+
+**Props**
+- `user`: User object containing profile details.
+- `variant`: Variant of the card (e.g., "addToTeam" or "removeFromTeam")
+
+The ProfileCard component can be used in various parts of the application where user profiles need to be displayed with different functionalities, such as adding to the team or removing from the team.
+
+
