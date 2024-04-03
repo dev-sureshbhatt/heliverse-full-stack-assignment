@@ -17,7 +17,7 @@ const [genderFilter, setGenderFilter] = useState("")
 const [availabilityFilter, setAvailabilityFilter] = useState("")
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/users?page=${page}&limit=${limit}`).then(
+    fetch(`https://heliverse-full-stack-assignment.onrender.com/api/users?page=${page}&limit=${limit}`).then(
       (res) => {
         res.json().then((data) => {
           setUserProfiles(data.result)
@@ -30,7 +30,7 @@ const [availabilityFilter, setAvailabilityFilter] = useState("")
 
 
   function handlePageChange(paginationPageNumber){
-    fetch(`http://localhost:4000/api/users?page=${paginationPageNumber}&limit=${limit}`).then(
+    fetch(`https://heliverse-full-stack-assignment.onrender.com/api/users?page=${paginationPageNumber}&limit=${limit}`).then(
       (res) => {
         res.json().then((data) => {
           setUserProfiles(data.result)
@@ -59,7 +59,7 @@ function handleSearch(ev){
     domain: domainFilter
   })
 
-  fetch(`http://localhost:4000/api/users?${queryParams}`).then(
+  fetch(`https://heliverse-full-stack-assignment.onrender.com/api/users?${queryParams}`).then(
       (res) => {
         res.json().then((data) => {
           setUserProfiles(data.result)

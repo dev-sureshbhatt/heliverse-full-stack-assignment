@@ -14,7 +14,7 @@ function Team() {
     //to fetch array of only IDS so that we can save it to the DB and reference to respective user profiles
     const teamMembersId = teamMembersState.map(value => value._id)
 
-    fetch("http://localhost:4000/api/team", {
+    fetch("https://heliverse-full-stack-assignment.onrender.com/api/team", {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({teamName, user: teamMembersId})
