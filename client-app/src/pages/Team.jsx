@@ -18,7 +18,7 @@ function Team() {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({teamName, user: teamMembersId})
-    })
+    }).then((response) => {response.json().then(data => alert(`${data.msg} with id ${data.createdTeam._id}`)).catch(err => console.log(err))}).catch(err => console.log(error))
 
     
   }
