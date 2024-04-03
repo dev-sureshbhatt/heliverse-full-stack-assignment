@@ -170,21 +170,25 @@ res.status(404).json({success: false, msg: "N user found"})
 
 
 
-//endpoint to create a new team from the selected members
+// endpoint to create a new team from the selected members
 
-// app.post('/api/team', (req,res)=>{
+app.get('/api/team/:id', async (req,res)=>{
+  const {id} = req.params
+  console.log(id) 
+  const fethcedTeam = await TEAM.findById(id).populate('user')
+  console.log(fethcedTeam)
 
-// })
+})
 
 
-const teamData = {
-  user: ['660cc4779ad2b3384633ff7f', '660cc4779ad2b3384633ff83'],
-  teamName: 'Team 1'
-};
+// const teamData = {
+//   user: ['660cc4779ad2b3384633ff7f', '660cc4779ad2b3384633ff83'],
+//   teamName: 'Team 1'
+// };
 
-const newTeam = new TEAM(teamData);
-console.log("saving team")
-await newTeam.save();
+// const newTeam = new TEAM(teamData);
+// console.log("saving team")
+// await newTeam.save();
 
 
 
