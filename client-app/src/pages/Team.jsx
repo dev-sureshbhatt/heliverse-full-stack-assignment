@@ -28,10 +28,10 @@ function Team() {
 
 
   return (
-    <div>
-      <h3>My Team Members</h3>
+    <div className="flex flex-col">
+      <h3 className="text-center text-xl mb-6 mt-4">Verify your Team Members and Create Team</h3>
 
-      <div>
+      <div className="flex flex-wrap gap-10 items-center justify-center">
         {teamMembersState.map((_value, index) => {
           return (
             <ProfileCard
@@ -42,8 +42,8 @@ function Team() {
           );
         })}
       </div>
-      <form onSubmit={handleCreateTeam}>
-      <input type="text" placeholder="Enter Team Name" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} />
+      <form className="flex justify-center mt-8 mb-8 gap-4" onSubmit={handleCreateTeam}>
+      <input type="text" placeholder="Enter team name to create team" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} />
       <button>Create Team</button>
       </form>
     </div>

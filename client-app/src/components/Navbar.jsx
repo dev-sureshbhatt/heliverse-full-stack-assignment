@@ -9,12 +9,12 @@ function Navbar() {
         <a className='sm:text-xl text-sm' href={'/'}>Heliverse Technologies</a>
         <div className='flex gap-7 items-center'>
           {/* using a tag below to refresh the page - so that the page fetches all results again irrespective of the filter */}
-            <Link to={'/team'}>
+            <Link to={'/create-team'}>
               
             <span className='sm:text-lg text-[#738FFF] font-extrabold text-sm'>{`My Team: ${teamMembers}`}</span>
             </Link>
             <Link to={'/'}>
-            <button className='sm:text-sm text-sm'>Add More Members</button>
+            <button className='sm:text-sm'>Add More Members</button>
             </Link>
         </div>
     </div>

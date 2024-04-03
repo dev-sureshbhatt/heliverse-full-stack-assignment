@@ -16,7 +16,7 @@ function App() {
     <Navbar />
     <Routes>
       <Route index element={<Home />} />
-      <Route path='/team' element={<Team />} />
+      <Route path='/create-team' element={<Team />} />
     </Routes>
     </BrowserRouter>
     </Provider>
