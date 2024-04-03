@@ -79,11 +79,15 @@ function handleSearch(ev){
 
 
 
-    <div className=" flex flex-col">
+    <div className="flex flex-col">
 
       {/* search form*/}
-    <form onSubmit={handleSearch}>
-        <input type="text" placeholder="Search By Name" value={searchQuery} onChange={(ev) => setSearchQuery(ev.target.value)} />
+      {/* flex flex-wrap gap-4 mt-4 mb-4 justify-center align-middle text-center items-center */}
+      {/* flex flex-wrap gap-4 mt-4 mb-4 justify-center align-middle text-center items-center sm:flex-col */}
+      {/* flex flex-wrap gap-4 mt-4 mb-4 justify-center align-middle text-center items-center sm:flex-row sm:flex-wrap sm:justify-start sm:gap-2 */}
+      {/* flex flex-wrap gap-4 mt-4 mb-7 justify-center align-middle text-center items-center */}
+    <form className="flex flex-wrap gap-4 mt-4 mb-4 justify-center align-middle text-center items-center sm:flex-row sm:flex-wrap sm:justify-center sm:gap-2" onSubmit={handleSearch}>
+        <input className="" type="text" placeholder="Search By Name" value={searchQuery} onChange={(ev) => setSearchQuery(ev.target.value)} />
         <select value={genderFilter} onChange={(ev) => setGenderFilter(ev.target.value)}>
             <option value={null}>Select Gender</option>
             <option value="Polygender">Polygender</option>
@@ -100,11 +104,16 @@ function handleSearch(ev){
             <option value="Finance">Finance</option>
             <option value="Management">Management</option>
         </select>
+        <div className="flex justify-center items-center gap-4">
+        <label htmlFor="availabilityCheckBox">Availability</label>
         <input
+          id="availabilityCheckBox"
           type="checkbox"
           checked={availabilityFilter}
           onChange={(ev) => setAvailabilityFilter(ev.target.checked)}
         />
+        </div>
+        
         <button>Submit</button>
     </form>  
       <div className="flex flex-wrap gap-10 items-center justify-center">

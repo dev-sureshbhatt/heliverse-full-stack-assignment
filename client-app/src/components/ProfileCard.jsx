@@ -42,9 +42,10 @@ export default function ProfileCard({ user, variant }) {
 
 
 
-        <div className="bg-[#3B3E47] flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[300px]">
+        <div className="bg-[#3B3E47] flex shadow-md flex-col gap-3 items-center justify-center text-center w-[250px] h-[320px]">
           <img className="border-[#738FFF] border-2 rounded-full" height={"60px"} width={"60px"} src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
           <div className="text-center mt-1">
+          
             <h3 className="text-lg font-semibold">{`${user.first_name} ${user.last_name}`}</h3>
             <p className="mt-4">{user.email}</p>
             <p>{user.gender}</p>
