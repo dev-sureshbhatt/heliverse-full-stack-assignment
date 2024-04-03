@@ -192,6 +192,69 @@ Retrieve all users with pagination support and optional filters.
         }
     ]
 }
+``
+
+### GET /api/users/:id
+Retrieve a user profile with specific ID.
+
+#### Example Usage
+
+- **Example Request to fetch a user with id 522** `GET https://heliverse-full-stack-assignment.onrender.com/api/users/522`
+
+- **Example Response**
+```json
+{
+    "success": "true",
+    "userProfile": {
+        "_id": "660cc4779ad2b33846340187",
+        "id": 522,
+        "first_name": "Kessia",
+        "last_name": "Record",
+        "email": "krecordeh@scribd.com",
+        "gender": "Female",
+        "avatar": "https://robohash.org/deseruntrepellatex.png?size=50x50&set=set1",
+        "domain": "Finance",
+        "available": true,
+        "__v": 0
+    }
+}
+```
+## POST /api/users
+Creates a new user profile and returns the created document back
+
+#### Example Usage
+
+**Example Request**
+`POST https://heliverse-full-stack-assignment.onrender.com/api/users`
+
+**Request Body**
+```json
+{
+    "first_name": "Suresh",
+    "last_name": "Bhatt",
+    "gender": "Male",
+    "available": false,
+    "avatar": "https://robohash.org/temporibusporrolaboriosam.png?size=50x50&set=set1",
+    "email": "dev.sureshbhatt@gmail.com",
+    "domain": "IT"
+}
 ```
 
-
+**Example Response**
+```json
+{
+    "Created User": {
+        "id": 1002,
+        "first_name": "Suresh",
+        "last_name": "Bhatt",
+        "email": "dev.sureshbhatt@gmail.com",
+        "gender": "Male",
+        "avatar": "https://robohash.org/temporibusporrolaboriosam.png?size=50x50&set=set1",
+        "domain": "IT",
+        "available": false,
+        "_id": "660d950f3193022859da116f",
+        "__v": 0
+    },
+    "success": "true"
+}
+```
