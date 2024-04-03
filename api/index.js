@@ -171,30 +171,18 @@ res.status(404).json({success: false, msg: "N user found"})
 
 //endpoint to create a new Team
 app.post('/api/team', async (req,res)=>{
-  
-  const {teamName, user} = req.body
-  const newObj = {}
-  newObj.teamName = teamName
-  newObj.user = user
-
-
-  const newTeam = new TEAM(newObj)
+  try {
+    const {teamName, user} = req.body
+    const newObj = {}
+    newObj.teamName = teamName
+    newObj.user = user
+    
+    const newTeam = new TEAM(newObj)
   await newTeam.save()
-  res.json({"createdTeam": newTeam})
-  // const newTeam = new TEAM(dataToSend)
-  // await newTeam.save()
-  // const teamData = {
-//   user: ['660cc4779ad2b3384633ff7f', '660cc4779ad2b3384633ff83'],
-//   teamName: 'Team 1'
-// };
-
-// const newTeam = new TEAM(teamData);
-// console.log("saving team")
-// await newTeam.save();
-
-
-
-
+  res.status(201).json({success: true, msg:"Team created", createdTeam: newTeam})
+  } catch (error) {
+    res.status(500).json({success:false, msg: "something went wrong"})
+  }
 
 })
 
