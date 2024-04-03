@@ -10,7 +10,8 @@ const teamSlice = createSlice({
         add(state, action){
             const existingUser = state.find(user => user.id === action.payload.id)
             const existingDomain = state.find(user => user.domain === action.payload.domain)
-            if (!existingUser && !existingDomain)
+
+            if (!existingUser && !existingDomain && (action.payload.available == true))
             {state.push(action.payload)}
 
         },
