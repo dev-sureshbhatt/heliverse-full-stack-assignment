@@ -219,7 +219,7 @@ Retrieve a user profile with specific ID.
     }
 }
 ```
-## POST /api/users
+### POST /api/users
 Creates a new user profile and returns the created document back
 
 #### Example Usage
@@ -256,5 +256,154 @@ Creates a new user profile and returns the created document back
         "__v": 0
     },
     "success": "true"
+}
+```
+
+### PUT /api/users/:id
+Endpoint to Update an existing user Profile
+
+#### Example Usage
+
+- **Example Request to update a user with id 1002** 
+`PUT https://heliverse-full-stack-assignment.onrender.com/api/users/1002`
+
+- **Request Body to update email from dev.sureshbhatt@gmail.com to updatedemail@gmail.com for document with id 1002** 
+
+```json
+{
+    "first_name": "Suresh",
+    "last_name": "Bhatt",
+    "gender": "Male",
+    "available": false,
+    "avatar": "https://robohash.org/temporibusporrolaboriosam.png?size=50x50&set=set1",
+    "email": "updatedemail@gmail.com",
+    "domain": "IT"
+}
+```
+
+-**Example Response**
+
+```json
+{
+    "success": true,
+    "msg": "User updated successfully",
+    "updatedUser": {
+        "_id": "660d950f3193022859da116f",
+        "id": 1002,
+        "first_name": "Suresh",
+        "last_name": "Bhatt",
+        "email": "updatedemail@gmail.com",
+        "gender": "Male",
+        "avatar": "https://robohash.org/temporibusporrolaboriosam.png?size=50x50&set=set1",
+        "domain": "IT",
+        "available": false,
+        "__v": 0
+    }
+}
+```
+
+### DELETE /api/users/:id
+Delete a user with specific id
+
+#### Example Usage
+
+-**Example Request to delete a user with id 1001** `DELETE https://heliverse-full-stack-assignment.onrender.com/api/users/1001`
+
+-**Example Response**
+
+```json
+{
+    "success": true,
+    "msg": "User has been deleted"
+}
+```
+
+
+### POST /api/team
+Create a new team by selecting users from the list with unique domains and availability
+
+#### Example usage
+
+- **Example Request**
+`POST https://heliverse-full-stack-assignment.onrender.com/api/team`
+
+-**Request Body to create a team of three selected users (using their mongoose assigned id so that they can be referenced back later)**
+```json
+{
+    "teamName":"My new Team (Updated)",
+    "user":["660cc4779ad2b3384633ff7f","660cc4779ad2b3384633ff84","660cc4779ad2b3384633ff83"]
+}
+```
+
+-**Example Response**
+```json
+{
+    "success": true,
+    "msg": "Team created",
+    "createdTeam": {
+        "teamName": "My new Team (Updated)",
+        "user": [
+            "660cc4779ad2b3384633ff7f",
+            "660cc4779ad2b3384633ff84",
+            "660cc4779ad2b3384633ff83"
+        ],
+        "_id": "660d98353193022859da1175",
+        "__v": 0
+    }
+}
+```
+
+
+### GET /api/team/:id
+Retrieve the details of a specific team by id
+
+#### Example Usage
+
+- **Example Request to fetch the team details created in the above POST example (id: 660d98353193022859da1175)** `GET https://heliverse-full-stack-assignment.onrender.com/api/team/660d98353193022859da1175`
+
+-**Example response: With users data referenced from User Profile database by referencing object IDs**
+```json
+{
+    "_id": "660d98353193022859da1175",
+    "teamName": "My new Team (Updated)",
+    "user": [
+        {
+            "_id": "660cc4779ad2b3384633ff7f",
+            "id": 2,
+            "first_name": "Honoria",
+            "last_name": "Caughte",
+            "email": "hcaughte1@google.com.br",
+            "gender": "Female",
+            "avatar": "https://robohash.org/temporibusporrolaboriosam.png?size=50x50&set=set1",
+            "domain": "Finance",
+            "available": true,
+            "__v": 0
+        },
+        {
+            "_id": "660cc4779ad2b3384633ff84",
+            "id": 7,
+            "first_name": "Kalindi",
+            "last_name": "Vinson",
+            "email": "kvinson6@g.co",
+            "gender": "Female",
+            "avatar": "https://robohash.org/occaecatinihilquos.png?size=50x50&set=set1",
+            "domain": "Management",
+            "available": true,
+            "__v": 0
+        },
+        {
+            "_id": "660cc4779ad2b3384633ff83",
+            "id": 6,
+            "first_name": "Monique",
+            "last_name": "Wilbud",
+            "email": "mwilbud5@state.gov",
+            "gender": "Female",
+            "avatar": "https://robohash.org/maximequiomnis.png?size=50x50&set=set1",
+            "domain": "IT",
+            "available": true,
+            "__v": 0
+        }
+    ],
+    "__v": 0
 }
 ```
