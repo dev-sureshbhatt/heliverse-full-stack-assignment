@@ -31,7 +31,8 @@ mongoose
 
 //GET all users with pagination support along with filter functionality
 app.get("/api/users", async (req, res) => {
-  //extracting info from URL query string
+
+  try {
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
   const {first_name, gender, available, domain } = req.query
@@ -60,13 +61,18 @@ app.get("/api/users", async (req, res) => {
     results.next = {
       page: page + 1,
       limit: limit,
-    };
-  }
-
-  const fetchUsers = await USER.find(filters).skip(startIndex).limit(limit);
+    }
+    const fetchUsers = await USER.find(filters).skip(startIndex).limit(limit);
   results.result = fetchUsers;
 
-        res.json(results);
+        res.status(200).json(results);
+  }
+
+  } catch (error) {
+   console.log(error)
+   res.status(500).json({success: false, msg: "something went wrong"}) 
+  }
+  
 });
 
 
