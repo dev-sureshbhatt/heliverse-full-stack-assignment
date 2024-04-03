@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { add, remove } from "../store/teamSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ProfileCard({ user, variant }) {
+
+
+  const [buttonLabel, setButtonLabel] = useState(user.available ? "Add to Team" : "Not Available")
   
   const dispatch = useDispatch();
+  const teamState = useSelector((state) => state.team) 
+  
 
   function handleAdd() {
-    dispatch(add(user))
-    console.log(user.first_name)
+    
+    if (user.available){
+      dispatch(add(user))
+      setButtonLabel("Added")
+    }
+    
+    
   }
 
   function handleRemove(){
@@ -30,9 +40,8 @@ export default function ProfileCard({ user, variant }) {
             <p>{user.email}</p>
             <p>{user.gender}</p>
             <p>{user.domain}</p>
-            <p>{user.availability}</p>
           </div>
-          <button onClick={handleAdd}>Add to team</button>
+          <button disabled={!user.available} onClick={handleAdd}>{buttonLabel}</button>
         </div>
       )
     case "removeFromTeam": 
