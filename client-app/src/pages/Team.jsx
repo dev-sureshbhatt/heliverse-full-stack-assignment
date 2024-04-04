@@ -42,7 +42,7 @@ function Team() {
           );
         })}
       </div>
-      <form className="flex justify-center mt-8 mb-8 gap-4" onSubmit={handleCreateTeam}>
+      <form className="flex flex-wrap justify-center mt-8 mb-8 gap-4" onSubmit={handleCreateTeam}>
       <input type="text" placeholder="Enter team name to create team" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} />
       <button>Create Team</button>
       </form>
