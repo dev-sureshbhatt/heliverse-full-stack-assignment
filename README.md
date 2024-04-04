@@ -1,3 +1,20 @@
+# Project Overview and API Documentation
+Technologies Used
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+
+### Frontend
+- React
+- Redux
+- Tailwind CSS
+
+### Additional Tools
+- Postman (for API testing)
+
+
 # How to Use the Application
 
 ## Homepage
